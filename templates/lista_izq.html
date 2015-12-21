@@ -1,0 +1,24 @@
+            <div class="col-lg-2 ">
+            {% if user.is_authenticated %}
+                <h4>{{user.usuario.first_name}}</h4>
+                <ul class="nav nav-pills nav-stacked">
+
+                  <li><a href="/usuario/{{user.usuario.matricula}}/informacion">Información Basica</a></li>
+                  {%if user.is_staff%}
+                  <li><a href="/admin/" target="_blank" >Panel Administrador</a></li>
+                  {%else%}
+
+                  <li><a href="/usuario/{{user.usuario.matricula}}/proyectos">Proyectos Inscritos</a></li>
+
+                  {%endif%}
+
+
+                {%if user.is_staff%}
+                <li><a href="/usuario/">Lista de usuarios</a></li>
+                {%endif%}
+                </ul>
+            {%else%}
+
+            {%endif%}
+                         
+            </div>

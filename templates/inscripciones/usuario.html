@@ -1,0 +1,74 @@
+
+{% include 'inicio.html'%}
+
+{% load static %}
+
+<!-- Portfolio Grid Section -->
+<section id="portfolio">
+    <div class="container">
+        <br>
+        <br>
+        <ol class="breadcrumb">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/proyectos/">Proyectos</a></li>
+          <li><a href="/usuario/">Usuarios</a></li>
+
+           {% if usuario %}
+
+          <li class="active">{{usuario.first_name}}</li>
+        </ol>
+        <div class="row">
+            
+            {% include 'lista_izq.html'%} 
+            
+
+                <div class="col-lg-8 ">
+                <div class="modal-body">
+                    <h2>{{usuario.first_name}}</h2>
+
+
+                    <p>{{usuario.last_name}}</p>
+                    <h3>Informacion General:</h3>
+                    <ul class="item-details">
+                        <li>email:
+                            <strong>{{usuario.email}}
+                            </strong>
+                        </li>
+                        <li>Matrícula:
+                            <strong>{{usuario.matricula}}
+                            </strong>
+                        </li>
+                        <li>Edad:
+                            <strong>{{usuario.edad}}
+                            </strong>
+                        </li>
+                        <li>Fecha inscrito:
+                            <strong>{{usuario.added}}
+                            </strong>
+                        </li>
+                        
+                        
+
+                    </ul>
+                    {%if user.is_staff%}
+                    <a href="del"><input class="add btn btn-default" type="submit" value="Eliminar Usuario"></a>
+                    {%endif%}
+                    <a href="/usuario/{{usuario.matricula}}/proyectos"><h3>Proyectos Inscritos</h3></a>
+                    
+                </div>
+            </div>
+                
+            {% else %}
+                <p>Usuario no disponible.</p>
+            {% endif %}
+
+            
+        </div>
+    </div>
+    
+</section>
+
+<!-- About Section -->
+
+
+{% include 'fin.html'%}

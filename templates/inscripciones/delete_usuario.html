@@ -1,0 +1,33 @@
+
+{% include 'inicio.html'%}
+
+{% load static %}
+<section>
+<div class="container">
+        <br>
+        <br>
+                
+        <ol class="breadcrumb">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/proyectos/">Proyectos</a></li>
+          <li><a href="/usuario/">Usuarios</a></li>
+          <li class="active">Eliminar Usuario</li>
+        </ol>
+        <div class="row">
+        		
+                <div class="col-lg-4 col-lg-offset-4">
+                <br>
+                {% if user %}
+                    <div class="alert alert-success" role="alert">
+                        Usuario eliminado con éxito
+                    </div>
+                    
+                {% endif%}
+				<br>
+				<br>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% include 'fin.html'%}

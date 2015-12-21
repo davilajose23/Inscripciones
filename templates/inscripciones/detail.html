@@ -1,0 +1,108 @@
+
+{% include 'inicio.html'%}
+
+{% load static %}
+
+<!-- Portfolio Grid Section -->
+<section id="portfolio">
+    <div class="container">
+        <br>
+        <br>
+        <ol class="breadcrumb">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/proyectos/">Proyectos</a></li>
+           {% if proyecto %}
+
+          <li class="active">{{proyecto.nombre}}</li>
+        </ol>
+        <div class="row">
+            
+            {% include 'lista_izq.html'%}
+            
+
+                <div class="col-lg-8 ">
+                <div class="modal-body">
+                    <h2>{{proyecto.nombre}}</h2>
+
+                    {%if user.is_staff%}
+                    <p>{{proyecto.descripcion}}</p>
+                    <p> <a href="getcsv">Exportar lista a Excel</a></p>
+                    {%endif%}
+
+                    <ul class="item-details">
+                        <li>Codigo:
+                            <strong>{{proyecto.codigo}}
+                            </strong>
+                        </li>
+                        <li>Cupo:
+                            <strong>{{proyecto.cupo}}
+                            </strong>
+                        </li>
+                        <li>Lugares disponibles:
+                            <strong>{{proyecto.lugares_disponibles}}
+                            </strong>
+                        </li>
+                        <li>Lugar:
+                            <strong>{{proyecto.lugar}}
+                            </strong>
+                        </li>
+                        <li>Horario:
+                            <strong>{{proyecto.horario}}
+                            </strong>
+                        </li>
+                    </ul>
+                    {% if user.is_authenticated %}
+                        {%if not user.is_staff%}
+                        <form action={% url 'proyectos:inscribir' proyecto.codigo  user.usuario.matricula %} method="post">
+                            {% csrf_token %}
+                            <input class="add btn btn-default" type="submit" value="Inscribir Proyecto">
+                        </form>
+                        {%else%}
+                        <a href="del"><input class="add btn btn-default" type="submit" value="Eliminar Proyecto"></a>
+
+                        {%endif%}
+
+                        
+                    {% endif %}
+                    {% if up %}
+                        <p>Lista de Usuarios Inscritos</p>
+                        {% for userP in up %}
+                            
+                            <li><a href="/usuario/{{usuario.matricula}}"><h4>{{userP.usuario.first_name}}</h4>
+                                </a></li>
+                            <ul class="list-inline item-details">
+                                
+                                <li><strong>Apellido:</strong> {{userP.usuario.last_name}}</li>
+                                <li><strong>Matrícula:</strong> {{userP.usuario.matricula}}</li>
+                                <li><strong>Email:</strong> {{userP.usuario.email}}</li>
+                                <li><strong>Edad:</strong> {{userP.usuario.edad}}</li>
+                                <li><strong>Fecha Añadido:</strong> {{userP.usuario.added}}</li>
+                                {%if usuario.is_prof%}
+                                <li><strong></strong>Profesor</li>
+                                {%else%}
+                                <li><strong></strong>Alumno</li>
+                                {%endif%}
+                                <li>
+                                
+                            </ul>
+
+                        {% endfor %}
+
+                    {% endif %}
+                </div>
+            </div>
+                
+            {% else %}
+                <p>No proyects are available.</p>
+            {% endif %}
+
+            
+        </div>
+    </div>
+    
+</section>
+
+<!-- About Section -->
+
+
+{% include 'fin.html'%}

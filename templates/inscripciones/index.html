@@ -1,0 +1,66 @@
+
+    <!-- Header -->
+{% include 'inicio.html'%}
+
+{% load static %}
+<!-- Portfolio Grid Section -->
+<section id="portfolio">
+    <div class="container">
+        <br>
+        <br>
+        <ol class="breadcrumb">
+          <li><a href="/">Inicio</a></li>
+          <li class="active">Proyectos</li>
+        </ol>
+        
+        <div class="row">
+            {% include 'lista_izq.html'%}
+            <div class="col-lg-9 content">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <br>
+                        <br>
+                        <h2>Proyectos</h2>
+                        <hr class="star-primary">
+                        {%if user.is_staff%}
+                        <a href="add/"><input class="add btn btn-success" type="submit" value="Agregar Proyecto"></a>
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="row">
+
+                    {% if proyectos_disponibles %}
+                        
+                        {% for proyecto in proyectos_disponibles %}
+                            
+                            <div class="col-sm-4 portfolio-item">
+                                <a href="/proyectos/{{proyecto.codigo}}" class="portfolio-link" data-toggle="modal">
+                                    <div class="caption">
+                                        <h3>{{proyecto.nombre}}</h3>
+                                        <div class="caption-content">
+                                            <i class="fa fa-search-plus fa-3x"></i>
+                                            
+                                        </div>
+                                    </div>
+                                    <h3>{{proyecto.nombre}}</h3>
+                                    {%if proyecto.url%}
+                                    <img src="{{proyecto.url}}" class="img-responsive"height="200" width="200" alt="">
+                                    {%else%}
+                                    <img src="https://pbs.twimg.com/profile_images/498915134073352192/ifsTXFsP.png" class="img-responsive" height="200" width="200"alt="">
+                                    {%endif%}
+                                </a>
+                            </div>
+
+                        {% endfor %}
+                        
+                    {% else %}
+                        <p>No hay proyectos disponibles.</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'fin.html'%}

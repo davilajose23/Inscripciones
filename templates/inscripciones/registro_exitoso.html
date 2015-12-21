@@ -1,0 +1,41 @@
+
+{% include 'inicio.html'%}
+
+{% load static %}
+<section>
+<div class="container">
+        <br>
+        <br>
+                
+        <ol class="breadcrumb">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/proyectos">Proyectos</a></li>
+          <li class="active">Registro</li>
+        </ol>
+        <div class="row">
+        		
+                <div class="col-lg-4 col-lg-offset-4">
+                <br>
+                {% if user %}
+                    <div class="alert alert-success" role="alert">
+                        Registro Exitoso
+                    </div>
+                    <h3>Datos para iniciar sesión:</h3>
+
+                    <ul>
+                        <li>
+                        <strong>Matrícula:</strong> {{user.matricula}}
+                        </li>
+                        <li>
+                        <strong>Password:</strong> {{user.password}}
+                        </li>
+                    </ul>
+                {% endif%}
+				<br>
+				<br>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% include 'fin.html'%}

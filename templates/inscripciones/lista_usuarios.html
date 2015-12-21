@@ -1,0 +1,70 @@
+
+    <!-- Header -->
+{% include 'inicio.html'%}
+
+{% load static %}
+<!-- Portfolio Grid Section -->
+<section id="portfolio">
+    <div class="container">
+        <br>
+        <br>
+        <ol class="breadcrumb">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/proyectos">Proyectos</a></li>
+          <li class="active">Usuarios</li>
+        </ol>
+        
+        <div class="row">
+            
+            {% include 'lista_izq.html'%}
+            <div class="col-lg-9 content">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <br>
+                        <br>
+                        <h2>Usuarios</h2>
+                        <hr class="star-primary">
+                        {%if user.is_staff%}
+                        <p> <a href="getCsvUsuarios">Exportar lista a Excel</a></p>
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="row">
+
+                    {% if lista_usuarios %}
+                        
+                        {% for usuario in lista_usuarios %}
+                            
+                            <li><a href="/usuario/{{usuario.matricula}}/"><h4>{{usuario.first_name}}</h4>
+                                </a></li>
+                            <ul class="list-inline item-details">
+                                
+                                <li><strong>Apellido:</strong> {{usuario.last_name}}</li>
+                                <li><strong>Matrícula:</strong> {{usuario.matricula}}</li>
+                                <li><strong>Email:</strong> {{usuario.email}}</li>
+                                <li><strong>Edad:</strong> {{usuario.edad}}</li>
+                                <li><strong>Dirección:</strong> {{usuario.direccion}}</li>
+                                <li><strong>Teléfono:</strong> {{usuario.telefono}}</li>
+                                <li><strong>Escuela:</strong> {{usuario.escuela}}</li>
+                                <li><strong>Nombre del Padre:</strong> {{usuario.nombre_padre}}</li>
+                                <li><strong>Password:</strong>{{usuario.password}}</li>
+                                <li><strong>Fecha Añadido:</strong> {{usuario.added}}</li>
+                                
+                                
+                                
+                                <li>
+                                
+                            </ul>
+
+                        {% endfor %}
+                        
+                    {% else %}
+                        <p>No hay usuarios disponibles.</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'fin.html'%}

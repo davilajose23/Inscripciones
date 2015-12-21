@@ -1,0 +1,62 @@
+
+{% include 'inicio.html'%}
+
+{% load static %}
+<section>
+<div class="container">
+        <br>
+        <br>
+                
+        <ol class="breadcrumb">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/proyectos">Proyectos</a></li>
+          <li class="active">Agregar</li>
+        </ol>
+        <div class="row">
+        		
+                <div class="col-lg-4 col-lg-offset-4">
+                
+                <h3>Agregar Proyecto</h3>
+                <form action="{% url 'proyectos:add' %}" method="post">
+                	{% csrf_token %}
+				  <div class="form-group">
+				    <label >Nombre del proyecto</label>
+				    <input type="text" required min="1"name="nombre"  class="form-control"  placeholder="Nombre del proyecto">
+				  </div>
+				  <div class="form-group">
+				    <label >Cupo</label>
+				    <input type="text" required min="1" name="cupo" class="form-control"  placeholder="Cupo">
+				  </div>
+				  <div class="form-group">
+				    <label >Descripción</label>
+				    <input type="text" required min="1" name="descripcion" class="form-control"  placeholder="Descripcion">
+				  </div>
+				  <div class="form-group">
+				    <label >Lugar</label>
+				    <input type="text" required name="lugar" class="form-control"  placeholder="Lugar">
+				  </div>
+				  <div class="form-group">
+				    <label >Horario</label>
+				    <input type="text" required min="1" name="horario" class="form-control"  placeholder="Horario">
+				  </div>
+				  <div class="form-group">
+				    <label >Categoria</label>
+				    <input type="text" required min="1" name="categoria" class="form-control"  placeholder="Categoria">
+				  </div>
+				  <div class="form-group">
+				    <label >Url de imagen</label>
+				    <input type="url"  min="1" name="url" class="form-control"  placeholder="url de imagen">
+				  </div>
+				  <input class="add btn btn-default" type="submit" value="Registrar Proyecto">
+				</form>
+				<br>
+				<br>
+            </div>
+                
+          
+
+            
+        </div>
+    </div>
+</section>
+{% include 'fin.html'%}
